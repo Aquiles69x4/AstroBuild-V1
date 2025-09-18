@@ -4,12 +4,13 @@ import { useState } from 'react'
 import { X } from 'lucide-react'
 
 interface CarModalProps {
+  isOpen: boolean
   car?: any
   onSave: (carData: any) => Promise<void>
   onClose: () => void
 }
 
-export default function CarModal({ car, onSave, onClose }: CarModalProps) {
+export default function CarModal({ isOpen, car, onSave, onClose }: CarModalProps) {
   const [formData, setFormData] = useState({
     brand: car?.brand || '',
     model: car?.model || '',
@@ -42,6 +43,8 @@ export default function CarModal({ car, onSave, onClose }: CarModalProps) {
       [name]: name === 'year' ? parseInt(value) : value
     }))
   }
+
+  if (!isOpen) return null
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
