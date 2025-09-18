@@ -208,6 +208,7 @@ export default function CarsSection() {
 
       {showModal && (
         <CarModal
+          isOpen={showModal}
           car={editingCar}
           onSave={handleSaveCar}
           onClose={() => setShowModal(false)}
